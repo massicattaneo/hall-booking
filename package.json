@@ -1,0 +1,24 @@
+{
+  "name": "hall-bookign",
+  "version": "1.0.0",
+  "description": "Web site for booking sits in a theatre hall",
+  "main": "client/index.html",
+  "scripts": {
+    "ut": "gulp ut",
+    "dist": "gulp dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/massicattaneo/hall-booking.git"
+  },
+  "author": "Massimiliano Cattaneo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/massicattaneo/hall-booking/issues"
+  },
+  "homepage": "https://github.com/massicattaneo/hall-booking#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "hall-booking",
+  "description": "",
+  "main": "app/index.html",
+  "authors": [
+    "mcattaneo <massi.cattaneo.it@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/massicattaneo/hall-booking",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "corejs": "https://github.com/massicattaneo/corejs.git#*",
+    "components-font-awesome": "^4.6.3"
+  }
+}
