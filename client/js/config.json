@@ -1,11 +1,9 @@
 {
-  "organizationName": "in&out centro de belleza",
-  "mainColor": "#52ae1b",
-  "secondaryColor": "#ccaa99",
-  "mainTextColor": "#ffffff",
-  "secondaryTextColor": "#000000",
+  "organizationName": "Teatro Monticello",
+  "primaryBgColor": "#590000",
+  "primaryFgColor": "#ffffff",
+  "buttonColor": "#000000",
+  "buttonBgColor": "#53af1b",
   "baseUrl": "images",
-  "logoUrl": "{{baseUrl}}/logo.png",
-  "depilacionText": "Depilacion",
-  "beautyText": "Beauty"
+  "logoUrl": "{{baseUrl}}/logo.png"
 }
