@@ -4,10 +4,14 @@
         <span></span>
         <span></span>
     </div>
-    <div class="signUp">
-            <input type="email" data-item="email" required title="Email non corretta" />
-            <input type="password" pattern=".{4,}" required title="3 characters minimum" data-item="password" />
-            <button data-on="click:emailSignUp">Nuova iscrizione</button>
-            <button data-on="click:emailSignIn">Entra</button>
-        </div>
+    <div data-item="wrapper" class="wrapper">
+        <fieldset title="Accesso">
+            <legend>Accesso:</legend>
+            <corejs:sign></corejs:sign>
+        </fieldset>
+        <fieldset title="Prenotazioni">
+            <legend>Prenotazioni:</legend>
+            <corejs:bookings></corejs:bookings>
+        </fieldset>
+    </div>
 </div>

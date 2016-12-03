@@ -11,6 +11,13 @@ function registerer(imports) {
     var hallSitTemplate = imports('components/hall-sit/template.html');
     var hallSitStyle = imports('components/hall-sit/style.scss');
 
+    var signController = imports('components/sign/controller.js');
+    var signTemplate = imports('components/sign/template.html');
+    var signStyle = imports('components/sign/style.scss');
+
+    var bookingsController = imports('components/bookings/controller.js');
+    var bookingsTemplate = imports('components/bookings/template.html');
+    var bookingsStyle = imports('components/bookings/style.scss');
 
     return function (config) {
         /** BUTTON **/
@@ -30,6 +37,23 @@ function registerer(imports) {
             style: hallSitStyle,
             config: config
         });
+
+        Component.register({
+            name: 'sign',
+            controller: signController(),
+            template: signTemplate,
+            style: signStyle,
+            config: config
+        });
+
+        Component.register({
+            name: 'bookings',
+            controller: bookingsController(),
+            template: bookingsTemplate,
+            style: bookingsStyle,
+            config: config
+        });
+
     }
-    
+
 }

@@ -26,6 +26,10 @@ function controller(imports) {
         var userID;
         var isOn = false;
 
+        c.init = function () {
+            c.get('wrapper').style.display = 'none';
+        };
+
         c.toggleBurger = function () {
             if (isOn) {
                 c.get('burger').removeClass('open');
@@ -33,31 +37,8 @@ function controller(imports) {
                 c.get('burger').addClass('open')
             }
             isOn = !isOn;
+            c.get('wrapper').style.display = isOn ? 'block' : 'none';
             Bus.fire('burgerToggle', isOn);
-        };
-
-        c.emailSignUp = function (e) {
-            e.preventDefault();
-            firebase.auth().createUserWithEmailAndPassword(c.get('email').value, c.get('password').value)
-                .then(function (data) {
-                    console.log(data)
-                }).catch(function () {
-                Bus.fire('showError', {
-                    message: 'riprova un altro momento. il servizio di iscrizione e\' momentaneamento sospeso'
-                })
-            });
-        };
-
-        c.emailSignIn = function (e) {
-            e.preventDefault();
-            firebase.auth().signInWithEmailAndPassword(c.get('email').value, c.get('password').value)
-                .then(function (data) {
-                    console.log(data)
-                }).catch(function () {
-                Bus.fire('showError', {
-                    message: 'riprova un altro momento. il servizio di accesso e\' momentaneamento sospeso'
-                })
-            });
         };
 
         return c;

@@ -1,0 +1,23 @@
+<div class="sign">
+    <label for="email">Email:</label>
+    <input name="email" type="email" data-item="email" required title="Email non corretta" /> <br/>
+    <label for="password">Password:</label>
+    <input name="password" type="password" pattern=".{4,}" required title="3 characters minimum" data-item="password" /><br/>
+    <br/>
+    <corejs:button data-id="info" data-on="click:emailSignUp">
+        <text>Registrati</text>
+        <background-color>$buttonBgColor</background-color>
+        <color>$buttonColor</color>
+    </corejs:button>
+    <corejs:button data-id="info" data-on="click:emailSignIn">
+        <text>Entra</text>
+        <background-color>$buttonBgColor</background-color>
+        <color>$buttonColor</color>
+    </corejs:button>
+    <corejs:button data-id="info" data-on="click:emailReset">
+        <text>Recupera</text>
+        <background-color>$buttonBgColor</background-color>
+        <color>$buttonColor</color>
+    </corejs:button>
+</div>
+
