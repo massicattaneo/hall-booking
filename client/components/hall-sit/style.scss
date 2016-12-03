@@ -1,8 +1,12 @@
-.&.booked {
+.&.booked input {
+    opacity: 0.5;
+}
+.&.booked label {
     opacity: 0.5;
 }
 
 .& {
+    position: relative;
     font-size: 10px;
     color: $color;
     display: inline-block;

@@ -28,12 +28,17 @@ function controller(imports) {
             hallSet.forEach(function (sits, row) {
                 if (id !== 0) hall.node.appendChild(Element.create('<br/>'));
                 sits.forEach(function (number, col) {
-                    var comp = Component({
-                        template: c.template,
-                        style: c.style,
-                        config: {id: id++, number: number, status: reservations[row][col] !== 0 ? 'booked' : 'free'}
-                    }).extend(c.controller);
-                    comp.createIn(hall.node);
+                    try {
+                        var comp = corejs.extend(Component({
+                            template: c.template,
+                            style: c.style,
+                            config: {id: id++, number: number, status: reservations[row][col] !== 0 ? 'booked' : 'free'}
+                        }),c.controller);
+                        comp.createIn(hall.node);
+                    } catch (e) {
+                        console.log(e, row, col)
+                    }
+
                 })
             })
         };

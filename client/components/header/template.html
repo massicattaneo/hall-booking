@@ -1,12 +1,17 @@
 <header>
-    <img alt="{{organizationName}}" src="{{logoUrl}}"/><br/>
+    <h1>{{organizationName}}</h1>
     <corejs:button data-id="info">
-        <text>Info</text>
+        <text><-</text>
+        <background-color>$buttonBgColor</background-color>
+        <color>$buttonColor</color>
+    </corejs:button>
+    <corejs:button data-id="info" data-item="buttonSwitch" data-on="click:switchInfo">
+        <text>{{infoLabel}}</text>
         <background-color>$buttonBgColor</background-color>
         <color>$buttonColor</color>
     </corejs:button>
     <corejs:button>
-        <text>Prenota</text>
+        <text>-></text>
         <background-color>$buttonBgColor</background-color>
         <color>$buttonColor</color>
     </corejs:button>

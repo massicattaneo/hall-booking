@@ -11,26 +11,27 @@
 
 function controller(imports) {
 
-    var template = imports('components/header/template.html');
-    var style = imports('components/header/style.scss');
+    var template = imports('components/info/template.html');
+    var style = imports('components/info/style.scss');
 
     return function (config) {
 
-        var c = Component({
+        var info = Component({
             template: template,
             style: style,
             config: config
         });
 
-        c.switchInfo = function () {
-            Bus.fire('switchInfo');
+        info.init = function () {
+            info.toggle(false);
         };
 
-        c.toggleInfo = function (info) {
-            this.get('buttonSwitch').setInnerText(info ? config.hallLabel : config.infoLabel)
+        info.toggle = function (showInfo) {
+            info.get('more').style.display = showInfo ? 'block' :'none';
         };
 
-        return c;
+
+        return info;
 
     }
 
