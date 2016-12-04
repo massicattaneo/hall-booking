@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "corejs": "https://github.com/massicattaneo/corejs.git#*",
-    "components-font-awesome": "^4.6.3"
+    "components-font-awesome": "^4.6.3",
+    "jspdf": "https://github.com/MrRio/jsPDF.git#v1.3.2"
   }
 }

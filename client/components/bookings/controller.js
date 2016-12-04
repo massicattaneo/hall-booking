@@ -10,16 +10,27 @@
  */
 
 function bookings(imports) {
+    var template = imports('components/bookings/bookingTemplate.html');
 
-    return function () {
+    return function (config) {
         var c = {};
 
-        c.print = function () {
-            console.log('print')
-        };
+        c.setBookings = function (bookings) {
+            var container = document.getElementById('bookingsContainer');
+            corejs.removeAllChild(container);
+            bookings.forEach(function (b) {
+                var comp = corejs.extend(Component({
+                    style: '',
+                    template: template,
+                    config: b
+                }), {
+                    print: function() {
+                        Bus.fire('print', b);
+                    }
+                });
 
-        c.delete = function () {
-            console.log('delete')
+                comp.createIn(container);
+            })
         };
 
         return c;

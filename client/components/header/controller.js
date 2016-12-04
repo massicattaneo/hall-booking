@@ -30,6 +30,14 @@ function controller(imports) {
             this.get('buttonSwitch').setInnerText(info ? config.hallLabel : config.infoLabel)
         };
 
+        c.next = function () {
+            Bus.fire('changeEvent', 1);
+        };
+
+        c.prev = function () {
+            Bus.fire('changeEvent', -1);
+        };
+
         return c;
 
     }

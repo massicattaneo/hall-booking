@@ -6,3 +6,13 @@
     width: 150px;
     margin: 5px;
 }
+.& .emailText {
+    display: inline-block; margin-right: 100px;
+}
+.& input {
+    border: 0;
+    height: 24px;
+    width: 200px;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px 0px #A7A7A7;
+}

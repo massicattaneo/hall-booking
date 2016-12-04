@@ -2,9 +2,26 @@
     color: $primaryFgColor;
     text-align: left;
 }
-.& table td, .& table th {
-    padding: 5px 10px;
+.& .title,.& .count,.& .date {
+    padding: 15px 5px;
+    display: inline-block;
 }
-.& table th {
+.& .strong {
+    font-weight: bold;
+}
+.& .strong {
     border-bottom: 1px solid $primaryFgColor;
+}
+
+.& .title {
+    width: 250px;
+}
+.& .count {
+    width: 80px;
+}
+.& .date {
+    width: 140px;
+}
+.& .print {
+    width: 60px;
 }

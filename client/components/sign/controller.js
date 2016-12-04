@@ -16,10 +16,13 @@ function sign(imports) {
         var obj;
 
         function logged(isIt, data) {
+            data = data || {};
+            isIt = data.isAnonymous ? false : isIt;
             obj.get('loggedIn').style.display = isIt ? 'block' : 'none';
             obj.get('emailText').setInnerText(isIt ? data.email : '');
             obj.get('loggedOut').style.display = !isIt ? 'block' : 'none';
-            Bus.fire('sign', isIt ? data.uid : undefined);
+            if (data.email === 'massi.cattaneo@alice.it') data.isAdmin = true;
+            Bus.fire('sign', isIt ? data : {});
         }
 
         c.init = function () {
@@ -30,6 +33,7 @@ function sign(imports) {
             if (firebase.auth().currentUser) {
                 logged(true, firebase.auth().currentUser);
             } else {
+                firebase.auth().signInAnonymously();
                 logged(false);
             }
         };
@@ -59,7 +63,7 @@ function sign(imports) {
         c.emailReset = function () {
             firebase.auth().sendPasswordResetEmail(this.get('email').value).then(function() {
                 Bus.fire('showError', {
-                    message: 'Le abbiamo spedito una mail per resettare la password'
+                    message: 'Ti abbiamo spedito una mail per reimpostare la password'
                 })
             }).catch(function(error) {
                 Bus.fire('showError', {
@@ -69,8 +73,14 @@ function sign(imports) {
         };
 
         c.emailSignOut = function () {
-            firebase.auth().signOut();
-            logged(false);
+            firebase.auth().signOut().then(function() {
+                // Sign-out successful.
+                logged(false);
+            }, function(error) {
+                Bus.fire('showError', {
+                    message: 'riprova un altro momento. il servizio non e\' momentaneamento disponibile'
+                })
+            });
         };
 
         return c;

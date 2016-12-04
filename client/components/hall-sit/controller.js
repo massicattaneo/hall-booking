@@ -13,11 +13,13 @@ function controller() {
 
     return function () {
         var c = {};
-
         c.init = function () {
             if (this.config.status === 'booked') {
-                this.get('input').checked = true
+                this.get('input').checked = true;
                 this.get('input').setAttribute('disabled', 'disabled');
+            }
+            if (this.config.status === 'mine') {
+                this.get('input').checked = true;
             }
         };
 

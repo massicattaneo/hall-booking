@@ -1,6 +1,9 @@
 .&.booked input {
     opacity: 0.5;
 }
+.&.hidden {
+    display: none;
+}
 .&.booked label {
     opacity: 0.5;
 }

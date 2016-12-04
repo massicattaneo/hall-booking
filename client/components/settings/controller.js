@@ -29,6 +29,7 @@ function controller(imports) {
         c.init = function () {
             obj = this;
             obj.get('wrapper').style.display = 'none';
+            obj.get('adminWrapper').style.display = 'none';
         };
 
         c.toggleBurger = function () {
@@ -42,12 +43,42 @@ function controller(imports) {
             Bus.fire('burgerToggle', isOn);
         };
 
-        c.showBookings = function (isLogged) {
-            obj.get('bookings').style.display = isLogged ? 'block' : 'none';
+        c.setBookings = function (array, user) {
+            var userId = user.uid;
+            var isLogged = userId !== undefined;
+            var mines = [];
+            obj.get('bookingsWrapper').style.display = isLogged ? 'block' : 'none';
+            obj.get('adminWrapper').style.display = user.isAdmin ? 'block' : 'none';
+            if (array) {
+                array.forEach(function (event, i) {
+                    var sits = [];
+                    event.bookings.forEach(function (r,ri) {
+                        var a  = r.map(function (c,ci) {return {row: ri, col: ci, user: c}})
+                            .filter(function (b) {return b.user === userId;});
+                        if (a.length) {
+                            sits = sits.concat(a);
+                        }
+                    });
+                    if (sits.length) {
+                        mines.push({
+                            sits: sits,
+                            sitsCount: sits.length,
+                            title: array[i].title,
+                            date: array[i].date.toDate().toFormatString('dd mmmm yyyy'),
+                            hour: array[i].hour
+                        })
+                    }
+                });
+                obj.get('bookings').setBookings(mines)
+            }
         };
 
         c.autoLogIn = function () {
             obj.get('sign').autoLogIn();
+        };
+
+        c.updateAdmin = function (events) {
+             obj.get('admin').update(events);
         };
 
         return c;

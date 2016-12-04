@@ -22,24 +22,36 @@ function controller(imports) {
             config: config
         });
 
-        hall.create = function (hallSet, reservations) {
+        var array = [];
+
+        function getStatus(value, user) {
+            if (value === 0) return 'free';
+            if (value === user) return 'mine';
+            return 'booked';
+        }
+
+        hall.update = function (hallSet, reservations, userid) {
             var c = Component.get('hallSit');
             var id = 0;
+            corejs.removeAllChild(hall.node);
+            array.length = 0;
             hallSet.forEach(function (sits, row) {
                 if (id !== 0) hall.node.appendChild(Element.create('<br/>'));
                 sits.forEach(function (number, col) {
-                    try {
-                        var comp = corejs.extend(Component({
-                            template: c.template,
-                            style: c.style,
-                            config: {id: id++, number: number, status: reservations[row][col] !== 0 ? 'booked' : 'free'}
-                        }),c.controller);
-                        comp.createIn(hall.node);
-                    } catch (e) {
-                        console.log(e, row, col)
-                    }
-
+                    var comp = corejs.extend(Component({
+                        template: c.template,
+                        style: c.style,
+                        config: {id: id++, number: number, status: getStatus(reservations[row][col], userid)}
+                    }), c.controller);
+                    comp.createIn(hall.node);
+                    array.push(comp);
                 })
+            })
+        };
+
+        hall.showHallSits = function (show) {
+            array.forEach(function (c) {
+                show ? c.node.removeClass('hidden') : c.node.addClass('hidden');
             })
         };
 

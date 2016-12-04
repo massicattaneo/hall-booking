@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=0.8, user-scalable=0">
+    <meta name="viewport" content="width=640, target-densitydpi=320,min-scale=1,max-scale=1, user-scalable=no">
     <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
     <script src="../bower_components/corejs/dist/corejs.js"></script>
+    <script src="../bower_components/jspdf/dist/jspdf.debug.js"></script>
     <script src="../data/monticello/firebase.js"></script>
 
+    <link href="../bower_components/components-font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="../data/monticello/style.css" rel="stylesheet" />
     <title>Hall Booking</title>
     <style>
@@ -22,6 +24,12 @@
 
         #website {
             min-width: 640px;
+        }
+        .fa:before {
+            font-family: FontAwesome;
+        }
+        .fa {
+            font-family: Arial;
         }
     </style>
 </head>

@@ -1,10 +1,15 @@
 .& {
     width: 120px;
-    height: 30px;
+    height: 42px;
     display: inline-block;
     border-radius: 30px;
     margin: 0 5px;
     font-size: 20px;
     background-color: $backgroundColor;
     color: $color;
+    border: none;
+}
+
+.&:active {
+    opacity: 0.5;
 }

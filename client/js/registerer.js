@@ -19,6 +19,11 @@ function registerer(imports) {
     var bookingsTemplate = imports('components/bookings/template.html');
     var bookingsStyle = imports('components/bookings/style.scss');
 
+    var adminController = imports('components/admin/controller.js');
+    var adminTemplate = imports('components/admin/template.html');
+    var adminStyle = imports('components/admin/style.scss');
+
+
     return function (config) {
         /** BUTTON **/
         Component.register({
@@ -54,6 +59,13 @@ function registerer(imports) {
             config: config
         });
 
-    }
+        Component.register({
+            name: 'admin',
+            controller: adminController(),
+            template: adminTemplate,
+            style: adminStyle,
+            config: config
+        });
 
+    }
 }
