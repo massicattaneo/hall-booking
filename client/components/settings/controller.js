@@ -23,22 +23,31 @@ function controller(imports) {
             config: config
         });
 
-        var userID;
         var isOn = false;
+        var obj;
 
         c.init = function () {
-            c.get('wrapper').style.display = 'none';
+            obj = this;
+            obj.get('wrapper').style.display = 'none';
         };
 
         c.toggleBurger = function () {
             if (isOn) {
-                c.get('burger').removeClass('open');
+                obj.get('burger').removeClass('open');
             } else {
-                c.get('burger').addClass('open')
+                obj.get('burger').addClass('open')
             }
             isOn = !isOn;
-            c.get('wrapper').style.display = isOn ? 'block' : 'none';
+            obj.get('wrapper').style.display = isOn ? 'block' : 'none';
             Bus.fire('burgerToggle', isOn);
+        };
+
+        c.showBookings = function (isLogged) {
+            obj.get('bookings').style.display = isLogged ? 'block' : 'none';
+        };
+
+        c.autoLogIn = function () {
+            obj.get('sign').autoLogIn();
         };
 
         return c;

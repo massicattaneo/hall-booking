@@ -9,15 +9,35 @@
  //////////////////////////////////////////////////////////////////////////////
  */
 
-function controller(imports) {
+function sign(imports) {
 
     return function () {
         var c = {};
-        c.emailSignUp = function (e) {
-            e.preventDefault();
-            firebase.auth().createUserWithEmailAndPassword(c.get('email').value, c.get('password').value)
+        var obj;
+
+        function logged(isIt, data) {
+            obj.get('loggedIn').style.display = isIt ? 'block' : 'none';
+            obj.get('emailText').setInnerText(isIt ? data.email : '');
+            obj.get('loggedOut').style.display = !isIt ? 'block' : 'none';
+            Bus.fire('sign', isIt ? data.uid : undefined);
+        }
+
+        c.init = function () {
+            obj = this;
+        };
+
+        c.autoLogIn = function () {
+            if (firebase.auth().currentUser) {
+                logged(true, firebase.auth().currentUser);
+            } else {
+                logged(false);
+            }
+        };
+
+        c.emailSignUp = function () {
+            firebase.auth().createUserWithEmailAndPassword(this.get('email').value, this.get('password').value)
                 .then(function (data) {
-                    console.log(data)
+                    logged(true, data);
                 }).catch(function () {
                 Bus.fire('showError', {
                     message: 'riprova un altro momento. il servizio di iscrizione non e\' momentaneamento disponibile'
@@ -25,11 +45,10 @@ function controller(imports) {
             });
         };
 
-        c.emailSignIn = function (e) {
-            e.preventDefault();
-            firebase.auth().signInWithEmailAndPassword(c.get('email').value, c.get('password').value)
+        c.emailSignIn = function () {
+            firebase.auth().signInWithEmailAndPassword(this.get('email').value, this.get('password').value)
                 .then(function (data) {
-
+                    logged(true, data);
                 }).catch(function () {
                 Bus.fire('showError', {
                     message: 'riprova un altro momento. il servizio di accesso non e\' momentaneamento disponibile'
@@ -38,7 +57,7 @@ function controller(imports) {
         };
 
         c.emailReset = function () {
-            firebase.auth().sendPasswordResetEmail(c.get('email').value).then(function() {
+            firebase.auth().sendPasswordResetEmail(this.get('email').value).then(function() {
                 Bus.fire('showError', {
                     message: 'Le abbiamo spedito una mail per resettare la password'
                 })
@@ -47,6 +66,11 @@ function controller(imports) {
                     message: 'riprova un altro momento. il servizio non e\' momentaneamento disponibile'
                 })
             });
+        };
+
+        c.emailSignOut = function () {
+            firebase.auth().signOut();
+            logged(false);
         };
 
         return c;

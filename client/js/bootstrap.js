@@ -32,16 +32,27 @@ function boostrap(imports) {
         var settings = Settings(config);
         //var fireBase = EmailAuthController(config);
         var tickets = [];
+        var user;
 
         document.body.style.backgroundColor = config['primaryBgColor'];
-        settings.createIn(document.getElementById('website'));
+
         header.createIn(document.getElementById('website'));
         info.createIn(document.getElementById('website'));
         hall.createIn(document.getElementById('website'));
         hall.create(hallSet, reservations);
+        settings.createIn(document.getElementById('website'));
+
         Bus.on('sit-change', onSitChange, 1);
         Bus.on('switchInfo', onSwitchChange, 1);
         Bus.on('burgerToggle', onSettingsToggle, 1);
+        Bus.on('sign', onSign, 1);
+
+        settings.autoLogIn();
+
+        function onSign(userId) {
+            user = userId;
+            settings.showBookings(userId !== undefined);
+        }
 
         function onSwitchChange() {
             showInfo = !showInfo;
@@ -53,7 +64,7 @@ function boostrap(imports) {
         function onSettingsToggle(open) {
             info.node.style.display = !open ? 'block' :'none';
             header.node.style.display = !open ? 'block' :'none';
-            hall.node.style.display = !open ? 'block' :'none';
+            hall.node.style.display = !open ? (showInfo ? 'none' : 'block') :'none';
         }
 
         function onSitChange(o) {

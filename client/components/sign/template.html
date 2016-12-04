@@ -1,23 +1,33 @@
 <div class="sign">
-    <label for="email">Email:</label>
-    <input name="email" type="email" data-item="email" required title="Email non corretta" /> <br/>
-    <label for="password">Password:</label>
-    <input name="password" type="password" pattern=".{4,}" required title="3 characters minimum" data-item="password" /><br/>
-    <br/>
-    <corejs:button data-id="info" data-on="click:emailSignUp">
-        <text>Registrati</text>
-        <background-color>$buttonBgColor</background-color>
-        <color>$buttonColor</color>
-    </corejs:button>
-    <corejs:button data-id="info" data-on="click:emailSignIn">
-        <text>Entra</text>
-        <background-color>$buttonBgColor</background-color>
-        <color>$buttonColor</color>
-    </corejs:button>
-    <corejs:button data-id="info" data-on="click:emailReset">
-        <text>Recupera</text>
-        <background-color>$buttonBgColor</background-color>
-        <color>$buttonColor</color>
-    </corejs:button>
+    <div data-item="loggedOut" class="loggedOut">
+        <label for="email">Email:</label>
+        <input name="email" type="email" data-item="email" required title="Email non corretta" /> <br/>
+        <label for="password">Password:</label>
+        <input name="password" type="password" pattern=".{4,}" required title="3 characters minimum" data-item="password" /><br/>
+        <br/>
+        <corejs:button data-on="click:emailSignUp">
+            <text>Registrati</text>
+            <background-color>$buttonBgColor</background-color>
+            <color>$buttonColor</color>
+        </corejs:button>
+        <corejs:button data-on="click:emailSignIn">
+            <text>Entra</text>
+            <background-color>$buttonBgColor</background-color>
+            <color>$buttonColor</color>
+        </corejs:button>
+        <corejs:button data-on="click:emailReset">
+            <text>Recupera</text>
+            <background-color>$buttonBgColor</background-color>
+            <color>$buttonColor</color>
+        </corejs:button>
+    </div>
+    <div data-item="loggedIn" class="loggedIn">
+        Email: <span data-item="emailText"></span>
+        <corejs:button data-on="click:emailSignOut">
+            <text>Esci</text>
+            <background-color>red</background-color>
+            <color>$buttonColor</color>
+        </corejs:button>
+    </div>
 </div>
 
