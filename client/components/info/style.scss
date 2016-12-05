@@ -11,3 +11,19 @@
     margin: 5px;
     color: $buttonBgColor;
 }
+.& h4 {
+    margin: 0 0px 10px 0;
+}
+.& .group {
+    font-weight: bold;
+    margin: 10px;
+    font-size: 20px;
+}
+.& .note {
+    font-style: italic;
+}
+.& .address {
+    margin: 10px;
+}
+.& .author {
+}

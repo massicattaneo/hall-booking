@@ -54,7 +54,7 @@ function controller(imports) {
             array.forEach(function (c) {
                 show ? c.node.removeClass('hidden') : c.node.addClass('hidden');
             });
-            document.getElementById('labelStage').setInnerText(show ? 'PALCO' : 'Accedi dal menu per prenotare')
+            document.getElementById('labelStage').setInnerText(show ? 'PALCO' : 'Accedi per prenotare')
         };
 
         return hall;

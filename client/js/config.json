@@ -1,9 +1,9 @@
 {
   "organizationName": "Amici del teatro Monticello",
-  "primaryBgColor": "#DCD4D4",
+  "primaryBgColor": "#fff",
   "primaryFgColor": "#000",
   "buttonColor": "#fff",
-  "buttonBgColor": "#386082",
+  "buttonBgColor": "#dd2a03",
   "baseUrl": "images",
   "logoUrl": "{{baseUrl}}/logo.png",
   "infoLabel": " Altre info",

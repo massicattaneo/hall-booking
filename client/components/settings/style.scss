@@ -1,11 +1,14 @@
 .& {
     color: $primaryFgColor;
+    max-width: 640px;
+    display: inline-block;
 }
 .& .wrapper {
-    padding: 80px 10px 0px;
+    padding: 0;
 }
 .& .wrapper fieldset {
-    margin-top: 20px;
+    margin-top: 5px;
+    text-align: left;
 }
 
 .& legend {

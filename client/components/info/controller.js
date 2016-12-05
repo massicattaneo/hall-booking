@@ -31,12 +31,13 @@ function controller(imports) {
         };
 
         info.update = function (data) {
-            info.get('title').setInnerText(data.title);
+            info.get('title').setInnerText('"' + data.title + '"');
             info.get('date').setInnerText(data.date.toDate().toFormatString('dddd dd mmmm yyyy'));
             info.get('hour').setInnerText(data.hour);
-            info.get('director').setInnerText(data.director);
-            info.get('type').setInnerText(data.type);
-            info.get('description').setInnerText(data.description);
+            info.get('author').setInnerText(data.author);
+            info.get('address').setInnerText(data.address);
+            info.get('group').setInnerText(data.group);
+            info.get('note').setInnerText(data.note);
         };
 
 

@@ -6,3 +6,13 @@
 .& h1 {
     color: $primaryFgColor;
 }
+.& .fa-arrow-right:after {
+    font-family: FontAwesome;
+    content: '\f061';
+}
+.& .fa-arrow-right:before {
+    content: "";
+}
+.& .fa-arrow-right, .& .fa-arrow-left {
+    width: 220px;
+}

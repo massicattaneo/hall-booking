@@ -27,17 +27,18 @@ function boostrap(imports) {
         var hall = Hall(config);
         var info = Info(config);
         var settings = Settings(config);
-        //var fireBase = EmailAuthController(config);
         var user = {};
         var eventId = 0;
         var events;
 
         document.body.style.backgroundColor = config['primaryBgColor'];
 
-        header.createIn(document.getElementById('website'));
-        info.createIn(document.getElementById('website'));
-        hall.createIn(document.getElementById('website'));
-        settings.createIn(document.getElementById('website'));
+        var webSite = document.getElementById('website');
+        webSite.appendChild(Element.create('<h1><a href="http://www.amicidelteatromonticello.it">amicidelteatromonticello.it</a></h1>'));
+        settings.createIn(webSite);
+        header.createIn(webSite);
+        info.createIn(webSite);
+        hall.createIn(webSite);
 
         Bus.on('sit-change', onSitChange, 1);
         Bus.on('switchInfo', onSwitchChange, 1);

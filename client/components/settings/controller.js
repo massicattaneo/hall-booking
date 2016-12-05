@@ -28,8 +28,8 @@ function controller(imports) {
 
         c.init = function () {
             obj = this;
-            obj.get('wrapper').style.display = 'none';
-            obj.get('adminWrapper').style.display = 'none';
+            //obj.get('wrapper').style.display = 'none';
+//            obj.get('adminWrapper').style.display = 'none';
         };
 
         c.toggleBurger = function () {
