@@ -6,17 +6,20 @@
         <input name="password" type="password" pattern=".{4,}" required title="3 characters minimum" data-item="password" /><br/>
         <br/>
         <corejs:button data-on="click:emailSignUp">
-            <text>Registrati</text>
+            <text> Registrati</text>
+            <class>fa fa-user-plus</class>
             <background-color>$buttonBgColor</background-color>
             <color>$buttonColor</color>
         </corejs:button>
         <corejs:button data-on="click:emailSignIn">
-            <text>Entra</text>
+            <text> Entra</text>
+            <class>fa fa-sign-in</class>
             <background-color>$buttonBgColor</background-color>
             <color>$buttonColor</color>
         </corejs:button>
         <corejs:button data-on="click:emailReset">
-            <text>Recupera</text>
+            <text> Recupera</text>
+            <class>fa fa-key</class>
             <background-color>$buttonBgColor</background-color>
             <color>$buttonColor</color>
         </corejs:button>
@@ -24,7 +27,7 @@
     <div data-item="loggedIn" class="loggedIn">
         Email: <span class="emailText" data-item="emailText"></span>
         <corejs:button data-on="click:emailSignOut" class="close fa fa-sign-out">
-            <text></text>
+            <text> Esci</text>
             <background-color>red</background-color>
             <color>$buttonColor</color>
         </corejs:button>

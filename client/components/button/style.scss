@@ -1,5 +1,5 @@
 .& {
-    width: 120px;
+    width: 150px;
     height: 42px;
     display: inline-block;
     border-radius: 30px;
@@ -8,8 +8,11 @@
     background-color: $backgroundColor;
     color: $color;
     border: none;
+    cursor: pointer;
 }
-
+.&:hover {
+    opacity: 0.8;
+}
 .&:active {
     opacity: 0.5;
 }

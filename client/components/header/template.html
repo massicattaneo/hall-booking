@@ -1,17 +1,18 @@
 <header>
     <h1>{{organizationName}}</h1>
     <corejs:button data-id="prev" data-on="click:prev">
-        <text><-</text>
+        <class>fa fa-arrow-left</class>
         <background-color>$buttonBgColor</background-color>
         <color>$buttonColor</color>
     </corejs:button>
     <corejs:button data-id="info" data-item="buttonSwitch" data-on="click:switchInfo">
         <text>{{infoLabel}}</text>
+        <class>fa fa-info-circle</class>
         <background-color>$buttonBgColor</background-color>
         <color>$buttonColor</color>
     </corejs:button>
     <corejs:button data-id="next" data-on="click:next">
-        <text>-></text>
+        <class>fa fa-arrow-right</class>
         <background-color>$buttonBgColor</background-color>
         <color>$buttonColor</color>
     </corejs:button>

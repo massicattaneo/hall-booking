@@ -6,6 +6,6 @@
   "buttonBgColor": "#386082",
   "baseUrl": "images",
   "logoUrl": "{{baseUrl}}/logo.png",
-  "infoLabel": "Info",
-  "hallLabel": "Sala"
+  "infoLabel": " Info",
+  "hallLabel": " Sala"
 }
