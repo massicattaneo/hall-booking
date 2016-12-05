@@ -38,14 +38,32 @@ function sign(imports) {
             }
         };
 
+        function fireBaseError(e) {
+            console.log(e);
+            var message = 'riprova un altro momento. il servizio di iscrizione non e\' momentaneamento disponibile';
+            switch (e.code) {
+                case 'auth/email-already-in-use':
+                    message = 'L\'indirizzo di posta è già in uso da un altro utente'; break;
+                case 'auth/wrong-password':
+                    message = 'La password non è valida'; break;
+                case 'auth/invalid-email':
+                    message = 'L\'email è in un formato invalido'; break;
+                case 'auth/user-not-found':
+                    message = 'Non c\'è nessun utente collegato a questo indirizzo email'; break;
+                case 'auth/weak-password':
+                    message = 'La password deve avere almeno 6 caratteri'; break;
+            }
+            Bus.fire('showError', {
+                message: message
+            })
+        }
+
         c.emailSignUp = function () {
             firebase.auth().createUserWithEmailAndPassword(this.get('email').value, this.get('password').value)
                 .then(function (data) {
                     logged(true, data);
-                }).catch(function () {
-                Bus.fire('showError', {
-                    message: 'riprova un altro momento. il servizio di iscrizione non e\' momentaneamento disponibile'
-                })
+                }).catch(function (e) {
+                    fireBaseError(e)
             });
         };
 
@@ -53,10 +71,8 @@ function sign(imports) {
             firebase.auth().signInWithEmailAndPassword(this.get('email').value, this.get('password').value)
                 .then(function (data) {
                     logged(true, data);
-                }).catch(function () {
-                Bus.fire('showError', {
-                    message: 'riprova un altro momento. il servizio di accesso non e\' momentaneamento disponibile'
-                })
+                }).catch(function (e) {
+                    fireBaseError(e)
             });
         };
 
@@ -65,10 +81,8 @@ function sign(imports) {
                 Bus.fire('showError', {
                     message: 'Ti abbiamo spedito una mail per reimpostare la password'
                 })
-            }).catch(function(error) {
-                Bus.fire('showError', {
-                    message: 'riprova un altro momento. il servizio non e\' momentaneamento disponibile'
-                })
+            }).catch(function(e) {
+                fireBaseError(e)
             });
         };
 
@@ -76,10 +90,8 @@ function sign(imports) {
             firebase.auth().signOut().then(function() {
                 // Sign-out successful.
                 logged(false);
-            }, function(error) {
-                Bus.fire('showError', {
-                    message: 'riprova un altro momento. il servizio non e\' momentaneamento disponibile'
-                })
+            }, function(e) {
+                fireBaseError(e)
             });
         };
 

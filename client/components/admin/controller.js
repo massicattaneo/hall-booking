@@ -20,33 +20,8 @@ function bookings(imports) {
             obj = this;
         };
 
-        c.update = function (evts) {
-            events = evts;
-            var select = this.get('select');
-            corejs.removeAllChild(select);
-            evts.forEach(function(e, i) {
-                select.appendChild(Element.create('<option selected value="'+ i+'">'+ e.title+'</option>'));
-            });
-            select.value = 0;
-        };
-
         c.print = function () {
-
-            var b = events[this.get('select').value];
-            var doc = new jsPDF();
-            doc.text('Lista - Amici del teatro di monticello', 10, 10);
-
-            doc.text('Data:', 10, 35);
-            doc.text( b.date, 90, 35);
-
-            doc.text('Ora:', 10, 42);
-            doc.text( b.hour, 90, 42);
-
-            doc.text('Spettacolo:', 10, 49);
-            doc.text(b.title, 90, 49);
-
-            doc.save('lista' + b.title + '.pdf');
-
+            Bus.fire('adminPrintList');
         };
 
         return c;

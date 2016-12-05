@@ -47,10 +47,60 @@ function boostrap(imports) {
         Bus.on('changeEvent', onChangeEvent, 1);
         Bus.on('print', onPrint, 1);
         Bus.on('showError', showError, 1);
+        Bus.on('adminPrintList', onAdminPrintList, 1);
 
         settings.autoLogIn();
 
         var database = firebase.database();
+
+        function onAdminPrintList() {
+            var event = events[eventId];
+            var doc = new jsPDF();
+            doc.text('Lista - Amici del teatro di monticello', 10, 10);
+
+            doc.text('Data:', 10, 20);
+            doc.text( event.date, 50, 20);
+
+            doc.text('Ora:', 10, 27);
+            doc.text( event.hour, 50, 27);
+
+            doc.text('Spettacolo:', 10, 36);
+            doc.text(event.title, 50, 36);
+
+            var bookings = [];
+            event.bookings.forEach(function (r, ri) {
+                r.forEach(function (c, ci) {
+                    if (c !== 0) {
+                        if (bookings.filter(function (b) {
+                                return b.email === c;
+                            }).length !== 0) {
+                            bookings.filter(function (b) {
+                                return b.email === c;
+                            })[0].sits.push((ci + 1) + ('ABCDEFGHILMNOPQ'.charAt(ri)))
+                        } else {
+                            bookings.push({
+                                email: c,
+                                sits: [(ci + 1) + ('ABCDEFGHILMNOPQ'.charAt(ri))]
+                            })
+                        }
+                    }
+                });
+            });
+
+            var linePos = 50;
+            if (bookings.length) {
+                doc.text('Email', 10, linePos);
+                doc.text('Posti', 140, linePos);
+            }
+            bookings.forEach(function (b,i) {
+                linePos += 6;
+                doc.text((i+1).toString(), 5, linePos);
+                doc.text(b.email, 10, linePos);
+                doc.text(b.sits.join(', '), 140, linePos);
+            });
+
+            doc.save('lista ' + event.title + '.pdf');
+        }
 
         function onPrint(b) {
             var doc = new jsPDF();
@@ -95,9 +145,8 @@ function boostrap(imports) {
             eventId += add;
             eventId = eventId < 0 ? 0 : eventId;
             eventId = eventId > events.length-1 ? events.length-1 : eventId;
-            hall.update(hallSet, events[eventId].bookings, user.uid);
+            hall.update(hallSet, events[eventId].bookings, user.email);
             info.update(events[eventId]);
-            settings.updateAdmin(events);
             showHall();
         }
 
@@ -110,7 +159,7 @@ function boostrap(imports) {
         }
 
         function showHall() {
-            hall.showHallSits(user.uid !== undefined);
+            hall.showHallSits(user.email !== undefined);
             settings.setBookings(events, user);
         }
 
@@ -132,7 +181,7 @@ function boostrap(imports) {
         }
 
         function onSitChange(o) {
-            if (user.uid) {
+            if (user.email) {
                 var row = -1;
                 var col = -1;
                 var index = 0;
@@ -148,7 +197,7 @@ function boostrap(imports) {
                         index++;
                     })
                 });
-                firebase.database().ref('/events/' + events[eventId].fireBaseIndex + '/bookings/'+ret[0]+'/'+ret[1]).set(o.checked ? user.uid : 0);
+                firebase.database().ref('/events/' + events[eventId].fireBaseIndex + '/bookings/'+ret[0]+'/'+ret[1]).set(o.checked ? user.email : 0);
             } else {
                 showError({
                     message: 'accedi prima di poter prenotare i posti'

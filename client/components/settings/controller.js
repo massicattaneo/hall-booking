@@ -44,8 +44,8 @@ function controller(imports) {
         };
 
         c.setBookings = function (array, user) {
-            var userId = user.uid;
-            var isLogged = userId !== undefined;
+            var userEmail = user.email;
+            var isLogged = userEmail !== undefined;
             var mines = [];
             obj.get('bookingsWrapper').style.display = isLogged ? 'block' : 'none';
             obj.get('adminWrapper').style.display = user.isAdmin ? 'block' : 'none';
@@ -53,8 +53,8 @@ function controller(imports) {
                 array.forEach(function (event, i) {
                     var sits = [];
                     event.bookings.forEach(function (r,ri) {
-                        var a  = r.map(function (c,ci) {return {row: ri, col: ci, user: c}})
-                            .filter(function (b) {return b.user === userId;});
+                        var a  = r.map(function (c,ci) {return {row: ri, col: ci, email: c}})
+                            .filter(function (b) {return b.email === userEmail;});
                         if (a.length) {
                             sits = sits.concat(a);
                         }
@@ -62,7 +62,7 @@ function controller(imports) {
                     if (sits.length) {
                         mines.push({
                             sits: sits,
-                            sitsCount: sits.length,
+                            sitsCount: sits.length + ' posti',
                             title: array[i].title,
                             date: array[i].date.toDate().toFormatString('dd mmmm yyyy'),
                             hour: array[i].hour
@@ -75,10 +75,6 @@ function controller(imports) {
 
         c.autoLogIn = function () {
             obj.get('sign').autoLogIn();
-        };
-
-        c.updateAdmin = function (events) {
-             obj.get('admin').update(events);
         };
 
         return c;
