@@ -6,7 +6,6 @@
   "buttonBgColor": "#386082",
   "baseUrl": "images",
   "logoUrl": "{{baseUrl}}/logo.png",
-  "labelStage": "PALCO",
   "infoLabel": "Info",
   "hallLabel": "Sala"
 }

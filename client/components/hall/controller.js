@@ -33,17 +33,18 @@ function controller(imports) {
         hall.update = function (hallSet, reservations, userid) {
             var c = Component.get('hallSit');
             var id = 0;
-            corejs.removeAllChild(hall.node);
             array.length = 0;
+            var container = document.getElementById('hallSits')
+            corejs.removeAllChild(container);
             hallSet.forEach(function (sits, row) {
-                if (id !== 0) hall.node.appendChild(Element.create('<br/>'));
+                if (id !== 0) container.appendChild(Element.create('<br/>'));
                 sits.forEach(function (number, col) {
                     var comp = corejs.extend(Component({
                         template: c.template,
                         style: c.style,
                         config: {id: id++, number: number, status: getStatus(reservations[row][col], userid)}
                     }), c.controller);
-                    comp.createIn(hall.node);
+                    comp.createIn(container);
                     array.push(comp);
                 })
             })
@@ -52,7 +53,8 @@ function controller(imports) {
         hall.showHallSits = function (show) {
             array.forEach(function (c) {
                 show ? c.node.removeClass('hidden') : c.node.addClass('hidden');
-            })
+            });
+            document.getElementById('labelStage').setInnerText(show ? 'PALCO' : 'Accedi dal menu per prenotare')
         };
 
         return hall;
