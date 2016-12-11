@@ -4,8 +4,7 @@
   "description": "Web site for booking sits in a theatre hall",
   "main": "client/index.html",
   "scripts": {
-    "ut": "gulp ut",
-    "dist": "gulp dist"
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -17,8 +16,10 @@
     "url": "https://github.com/massicattaneo/hall-booking/issues"
   },
   "homepage": "https://github.com/massicattaneo/hall-booking#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-phantom": "0.0.6",
+    "require-dir": "^0.3.1"
   }
 }
